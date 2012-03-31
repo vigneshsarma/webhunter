@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript">
+    </script>
+    <title></title>
+{%block head %}
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/png" />
+    <link rel="stylesheet" href="static/style.css" type="text/css" />
+    <title>Web-Hunter</title>
+{%endblock %}
+  </head>
+  <body>
+{%block body %}
+    <form id="search_form" action="web/" method="GET">
+      <input type="TEXT" name="q" />
+      <input type="SUBMIT" value="Search"/>
+    </form>
+{%endblock %}
+  </body>
+</html>

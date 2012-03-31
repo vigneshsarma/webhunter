@@ -1,0 +1,24 @@
+#search_form {
+  position:fixed;
+  font-family: sans-serif;
+  background-color: blue;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  top: 0px;
+  }
+
+#search_form input[type="text"] {
+  vertical-align:middle ;
+  width: 400px;
+  border: medium;
+  
+}
+#search_form input{
+  vertical-align: middle;
+  margin: 10px;
+}
+#search_form {
+  position: fixed;
+  top: 45%;
+}

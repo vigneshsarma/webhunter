@@ -1,0 +1,12 @@
+{%extends "base.html"%}
+{%block head %}
+    <link rel="shortcut icon" href="../static/favicon.ico" type="image/png" />
+    <link rel="stylesheet" href="../static/style.css" type="text/css" />
+    <title>Web-Hunter</title>
+{%endblock %}
+{%block body %}
+    <form id="search_form" action="web/" method="GET">
+      <input type="TEXT" name="q" value="{{request.args.get('q')}}"/>
+      <input type="SUBMIT" value="Search"/>
+    </form>
+{%endblock %}
