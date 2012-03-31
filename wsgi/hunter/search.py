@@ -250,6 +250,4 @@ ranks = compute_ranks(graph)
 #>>> None
 
 
-
-
-
+print "loading search.py"

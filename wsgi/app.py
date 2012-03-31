@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello():
     return render_template('base.html')#'Hello World,from Vignesh'+'!'*5
 
-@app.route('/web/')
+@app.route('/web')
 def web():
     results = hunter_search.ordered_search(hunter_search.index, hunter_search.ranks, request.args.get('q'))
     if not results:
