@@ -12,13 +12,43 @@
   vertical-align:middle ;
   width: 400px;
   border: medium;
-  
+  margin-left: 30px;
 }
 #search_form input{
   vertical-align: middle;
   margin: 10px;
 }
-#search_form {
-  position: fixed;
+.home {
+  position: absolute;
   top: 45%;
+}
+
+.searched {
+  position: absolute;
+  top: 0px;
+}
+
+#searched_results {
+    position: absolute;
+    top: 70px;
+    left: 50px;
+    width:auto;
+}
+
+#searched_results div {
+    height: 40px;
+    
+    width: 700px;
+    border: gray solid 1px;
+}
+
+#searched_results div :hover {
+    border: aqua solid 1px;
+}
+
+#heading {
+    float:left;
+    vertical-align: middle;
+    font-size: 32px;
+    color: gray;
 }
