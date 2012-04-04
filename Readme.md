@@ -5,8 +5,9 @@ This builds on the basic code for search engine, indexing and ranking from Udaci
 
 ##Added Features:
 * A web interface have been added using flask web-framework and jinja2 templating engine.
+* Use HTMLParser to provide a better and more accurate HTML parsing.
 
 ##Planed changes:
-* Use SGML parser to provide a better and more accurate HTML parsing.
+* Extract more use full data from html like title, scentences containing the word etc.
 * Use Mango DB to provide a persistent index and rank storage.
 * Use urllib to get real web-pages and index those.
