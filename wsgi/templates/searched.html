@@ -12,7 +12,10 @@
     </form>
     <div id="searched_results">
     {%for each in results %}
-    <div><a href="{{each}}">{{each}} </a></div>
+    <div class="each_result">
+    <div><a href="{{each}}">{{graph[each][1]}} </a></div>
+    <div class="page_contents">{{graph[each][2][0:200]}}</div>
+    </div>
     {%endfor%}
     </div>
 {%endblock %}

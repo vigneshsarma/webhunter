@@ -84,8 +84,9 @@ def crawl_web(seed): # returns index, graph of inlinks
         if page not in crawled:
             content = get_page(page)
             outlinks,content,title = LinkFinder().start_parsing(content)
+            print title
             add_page_to_index(index, page, content)
-            graph[page] = outlinks
+            graph[page] = (outlinks,title,content)
             union(tocrawl, outlinks)
             crawled.append(page)
     return index, graph
@@ -104,8 +105,8 @@ def compute_ranks(graph):
         for page in graph:
             newrank = (1 - d) / npages
             for node in graph:
-                if page in graph[node]:
-                    newrank = newrank + d * (ranks[node] / len(graph[node]))
+                if page in graph[node][0]:
+                    newrank = newrank + d * (ranks[node] / len(graph[node][0]))
             newranks[page] = newrank
         ranks = newranks
     return ranks

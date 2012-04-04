@@ -9,6 +9,8 @@ class LinkFinder(HTMLParser):
         self.entered_title=False
         self.title = ""
         self.feed(content)
+        if self.title== "":
+            self.title = self.data[0:20]
         return self.url,self.data,self.title
     def handle_starttag(self, tag, attrs):
         #print "Encountered a start tag:", tag, attrs
@@ -27,6 +29,7 @@ class LinkFinder(HTMLParser):
         #print "Encountered some data  :",
         if self.entered_title:
             self.title = data
+            print data
             
         self.data += " "+data.lower()
 
@@ -34,5 +37,5 @@ class LinkFinder(HTMLParser):
 
 if __name__=="__main__":
     # instantiate the parser and fed it some HTML
-    parser = MyHTMLParser()
+    parser = LinkFinder()
     print parser.start_parsing('<html><head><title>Test</title></head>'+ '<body id="bla"><a href="#" ><h1>Parse me!</h1></a></body></html>')

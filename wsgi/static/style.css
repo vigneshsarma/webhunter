@@ -35,15 +35,11 @@
     width:auto;
 }
 
-#searched_results div {
-    height: 40px;
+.each_result {
+    height: 50px;
     
     width: 700px;
     border: gray solid 1px;
-}
-
-#searched_results div :hover {
-    border: aqua solid 1px;
 }
 
 #heading {
@@ -52,3 +48,7 @@
     font-size: 32px;
     color: gray;
 }
+
+.page_contents {
+    font-size: 12px;
+ }
