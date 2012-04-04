@@ -63,7 +63,8 @@ def add_page_to_index(index, url, content):
         
 def add_to_index(index, keyword, url):
     if keyword in index:
-        index[keyword].append(url)
+        if url not in index[keyword]:
+            index[keyword].append(url)
     else:
         index[keyword] = [url]
     
@@ -124,6 +125,7 @@ ranks = compute_ranks(graph)
 if __name__ == "__main__":
     
     print ordered_search(index, ranks, 'Hummus')
+    #print index
 #>>> ['http://udacity.com/cs101x/urank/kathleen.html', 
 #    'http://udacity.com/cs101x/urank/nickel.html', 
 #    'http://udacity.com/cs101x/urank/arsenic.html', 

@@ -15,6 +15,7 @@ class LinkFinder(HTMLParser):
         if tag== 'a':
             for at in attrs:
                 if at[0]=="href":
+                    #print at[1]
                     self.url.append(at[1])
         elif tag == "title":
             self.entered_title = True
