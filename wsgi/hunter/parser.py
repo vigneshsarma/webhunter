@@ -29,7 +29,7 @@ class LinkFinder(HTMLParser):
         #print "Encountered some data  :",
         if self.entered_title:
             self.title = data
-            print data
+            #print data
             
         self.data += " "+data.lower()
 
