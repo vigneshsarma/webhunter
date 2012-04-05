@@ -1,13 +1,15 @@
 from cache import cache
 from parser import LinkFinder
-
+from pymongo import Connection
 
 class WebHunter:
     def __init__(self):
+        db = Connection().web_hunter
         self.index, self.graph = {},{}# <url>, [list of pages it links to]
         self.crawl_web('http://udacity.com/cs101x/urank/index.html')
         self.ranks = {}
         self.compute_ranks()
+        db.index.insert(self.index)
 
     def qsort(self,tosort,ranks):
         if tosort == []: 
@@ -62,7 +64,7 @@ class WebHunter:
             if page not in crawled:
                 content = self.get_page(page)
                 outlinks,content,title = LinkFinder().start_parsing(content)
-                self.add_page_to_index( page, content)
+                self.add_page_to_index( page, content.replace(".",""))
                 self.graph[page] = (outlinks,title,content)
                 self.union(tocrawl, outlinks)
                 crawled.append(page)
