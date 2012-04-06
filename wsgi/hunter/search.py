@@ -69,7 +69,7 @@ class WebHunter:
                 content = self.get_page(page)
                 outlinks,content,title = LinkFinder().start_parsing(content)
                 self.add_page_to_index( page, content.replace(".",""))
-                self.graph[page] = (outlinks,title,content)
+                self.graph.insert(page,outlinks,title,content)
                 self.union(tocrawl, outlinks)
                 crawled.append(page)
 
@@ -77,17 +77,18 @@ class WebHunter:
         d = 0.8 # damping factor
         numloops = 10
 
-        npages = len(self.graph)
-        for page in self.graph:
+        npages = sef.graph.size()
+        for page in self.graph.find.:
             self.ranks[page] = 1.0 / npages
 
         for i in range(0, numloops):
             newranks = {}
-            for page in self.graph:
+            graph = self.graph.find()
+            for page in graph:
                 newrank = (1 - d) / npages
-                for node in self.graph:
-                    if page in self.graph[node][0]:
-                        newrank = newrank + d * (self.ranks[node] / len(self.graph[node][0]))
+                for node in graph:
+                    if page in node["links"]:
+                        newrank = newrank + d * (self.ranks[node["url"]] / len(graph[node["url"]][0]))
                 newranks[page] = newrank
             self.ranks = newranks
         
