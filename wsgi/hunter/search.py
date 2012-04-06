@@ -1,15 +1,16 @@
 from cache import cache
 from parser import LinkFinder
 from pymongo import Connection
+from IndexHunt import IndexHunt
 
 class WebHunter:
     def __init__(self):
-        db = Connection().web_hunter
-        self.index, self.graph = {},{}# <url>, [list of pages it links to]
+        #db = Connection().web_hunter
+        self.index, self.graph = IndexHunt(),{}# <url>, [list of pages it links to]
         self.crawl_web('http://udacity.com/cs101x/urank/index.html')
         self.ranks = {}
         self.compute_ranks()
-        db.index.insert(self.index)
+        #db.index.insert(self.index)
 
     def qsort(self,tosort,ranks):
         if tosort == []: 
@@ -22,9 +23,9 @@ class WebHunter:
 
     def ordered_search(self, keyword):
         keyword=keyword.lower()
-        if keyword in self.index:
-            results = self.index[keyword]
-            return self.qsort(results,self.ranks)
+        links = self.index.find(keyword)
+        if links:
+            return self.qsort(links,self.ranks)
         return None
 
     def get_page(self,url):
@@ -44,15 +45,18 @@ class WebHunter:
             self.add_to_index( word, url)
 
     def add_to_index(self, keyword, url):
-        if keyword in self.index:
-            if url not in self.index[keyword]:
-                self.index[keyword].append(url)
+        links = self.index.find(keyword)
+        if links:
+            if url not in links:
+                links.append(url)
+                self.index.update(keyword,links)
         else:
-            self.index[keyword] = [url]
+            self.index.insert(keyword ,url)
 
     def lookup(self, keyword):
-        if keyword in self.index:
-            return self.index[keyword]
+        links = self.index.find(keyword)
+        if links:
+            return links
         else:
             return None
 
