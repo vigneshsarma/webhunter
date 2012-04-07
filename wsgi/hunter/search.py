@@ -2,11 +2,13 @@ from cache import cache
 from parser import LinkFinder
 from pymongo import Connection
 from IndexHunt import IndexHunt
+from GraphHunt import GraphHunt
 
 class WebHunter:
     def __init__(self):
         #db = Connection().web_hunter
-        self.index, self.graph = IndexHunt(),{}# <url>, [list of pages it links to]
+        self.index, self.graph = IndexHunt(),GraphHunt()
+        
         self.crawl_web('http://udacity.com/cs101x/urank/index.html')
         self.ranks = {}
         self.compute_ranks()
@@ -77,9 +79,9 @@ class WebHunter:
         d = 0.8 # damping factor
         numloops = 10
 
-        npages = sef.graph.size()
-        for page in self.graph.find.:
-            self.ranks[page] = 1.0 / npages
+        npages = self.graph.size()
+        for page in self.graph.find():
+            self.ranks[page["url"]] = 1.0 / npages
 
         for i in range(0, numloops):
             newranks = {}
@@ -89,7 +91,7 @@ class WebHunter:
                 for node in graph:
                     if page in node["links"]:
                         newrank = newrank + d * (self.ranks[node["url"]] / len(graph[node["url"]][0]))
-                newranks[page] = newrank
+                newranks[page["url"]] = newrank
             self.ranks = newranks
         
 
@@ -114,4 +116,4 @@ if __name__ == "__main__":
 #>>> None
 
 
-    print "loading search.py"
+    #print webHunt.graph.find(),"loading search.py"
