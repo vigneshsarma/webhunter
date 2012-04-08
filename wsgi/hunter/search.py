@@ -70,7 +70,7 @@ class WebHunter:
             if page not in crawled:
                 content = self.get_page(page)
                 outlinks,content,title = LinkFinder().start_parsing(content)
-                self.add_page_to_index( page, content.replace(".",""))
+                self.add_page_to_index( page, content)
                 self.graph.insert(page,outlinks,title,content)
                 self.union(tocrawl, outlinks)
                 crawled.append(page)
@@ -80,6 +80,7 @@ class WebHunter:
         numloops = 10
 
         npages = self.graph.size()
+
         for page in self.graph.find():
             self.ranks[page["url"]] = 1.0 / npages
 
@@ -87,10 +88,13 @@ class WebHunter:
             newranks = {}
             graph = self.graph.find()
             for page in graph:
+                
                 newrank = (1 - d) / npages
                 for node in graph:
-                    if page in node["links"]:
-                        newrank = newrank + d * (self.ranks[node["url"]] / len(graph[node["url"]][0]))
+                    #print page["url"], node["links"]
+                    if page["url"] in node["links"]:
+                        newrank = newrank + d * (self.ranks[node["url"]] / len(node["links"]))
+                        
                 newranks[page["url"]] = newrank
             self.ranks = newranks
         
@@ -114,6 +118,7 @@ if __name__ == "__main__":
 
     print webHunt.ordered_search( 'babaganoush')
 #>>> None
+    print webHunt.ranks
 
 
     #print webHunt.graph.find(),"loading search.py"
