@@ -12,6 +12,5 @@ This builds on the basic code for search engine, indexing and ranking from Udaci
   * `IndexHunt.py` and `GraphHunt.py` act as abstraction for this purpouse.
 
 ##TODO:
-
 * Use urllib to get real web-pages and index those.
 * Add a web interface for adding new links to index.
