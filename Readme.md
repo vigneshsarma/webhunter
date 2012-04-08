@@ -8,8 +8,10 @@ This builds on the basic code for search engine, indexing and ranking from Udaci
 * Use HTMLParser to provide a better and more accurate HTML parsing.
 * Extract more use full data from html like title, scentences containing the word etc.
 * Made the whole thing search.py into a class.
+* MangoDB provides a persistent index and graph storage.
+  * `IndexHunt.py` and `GraphHunt.py` act as abstraction for this purpouse.
 
 ##TODO:
-* Use Mango DB to provide a persistent index and rank storage.
+
 * Use urllib to get real web-pages and index those.
 * Add a web interface for adding new links to index.
