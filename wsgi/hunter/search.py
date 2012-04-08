@@ -9,7 +9,7 @@ class WebHunter:
         #db = Connection().web_hunter
         self.index, self.graph = IndexHunt(),GraphHunt()
         
-        self.crawl_web('http://udacity.com/cs101x/urank/index.html')
+        #self.crawl_web('http://udacity.com/cs101x/urank/index.html')
         self.ranks = {}
         self.compute_ranks()
         #db.index.insert(self.index)

@@ -13,8 +13,14 @@
     <div id="searched_results">
     {%for each in results %}
     <div class="each_result">
-    <div><a href="{{each}}">{{graph.find(each)["title"]}} </a></div>
+      
+    {%if each != "No results found!!!try something else."%}
+    <div>
+      <a href="{{each}}">{{graph.find(each)["title"]}} </a></div>
     <div class="page_contents">{{graph.find(each)["content"][0:200]}}</div>
+    {%else%}
+      <a href="{{each}}">{{each}} </a>    
+    {%endif%}
     </div>
     {%endfor%}
     </div>
